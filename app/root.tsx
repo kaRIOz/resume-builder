@@ -15,6 +15,8 @@ import "./app.css";
 import { usePuterStore } from "./lib/puter";
 // i18n
 import "./i18n";
+// shandcn theme
+import { ThemeProvider } from "./components/theme-provider";
 
 export const links: Route.LinksFunction = () => [
   { rel: "preconnect", href: "https://fonts.googleapis.com" },
@@ -47,7 +49,9 @@ export function Layout({ children }: { children: React.ReactNode }) {
 
       <body>
         <script src="https://js.puter.com/v2/"></script>
-        {children}
+        <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
+          {children}
+        </ThemeProvider>
         <ScrollRestoration />
         <Scripts />
       </body>
