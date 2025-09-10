@@ -9,6 +9,7 @@ import ResumeCard from "~/components/ResumeCard";
 import { usePuterStore } from "~/lib/puter";
 import LightRays from "~/components/LightRays";
 import { Button } from "../components/ui/button";
+import { useTranslation } from "react-i18next";
 
 export function meta({}: Route.MetaArgs) {
   return [
@@ -26,6 +27,7 @@ export default function Home() {
   useEffect(() => {
     if (!auth.isAuthenticated) navigate("/auth?next=/");
   }, [auth.isAuthenticated]);
+  const { t } = useTranslation();
 
   useEffect(() => {
     const loadResumes = async () => {
@@ -64,13 +66,17 @@ export default function Home() {
         </div>
         <div className="absolute -translate-x-1/2 -translate-y-1/2 left-1/2 top-1/2 ">
           <div className="page-heading">
-            <h1>Track Your Applications & Resume Ratings</h1>
+            <h1>{t("Track-Your-Applications-&-Resume-Ratings")}</h1>
             {!loadingResumes && resumes?.length === 0 ? (
               <h2>
-                No resumes found. Upload your first resume to get feedback.
+                {t(
+                  "No-resumes-found.-Upload-your-first-resume-to-get-feedback."
+                )}
               </h2>
             ) : (
-              <h2>Review your submissions and check AI-powered feedback.</h2>
+              <h2>
+                {t("Review-your-submissions-and-check-AI-powered-feedback.")}
+              </h2>
             )}
           </div>
           {loadingResumes && (
@@ -90,7 +96,7 @@ export default function Home() {
           {!loadingResumes && resumes?.length === 0 && (
             <div className="flex flex-col items-center justify-center mt-10 gap-4">
               <Link to="/upload">
-                <Button variant={"default"}>Upload Resume</Button>
+                <Button variant={"default"}>{t("Upload-Resume")}</Button>
               </Link>
             </div>
           )}
