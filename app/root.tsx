@@ -13,6 +13,8 @@ import type { Route } from "./+types/root";
 import "./app.css";
 //zustand
 import { usePuterStore } from "./lib/puter";
+// i18n
+import "./i18n";
 
 export const links: Route.LinksFunction = () => [
   { rel: "preconnect", href: "https://fonts.googleapis.com" },
