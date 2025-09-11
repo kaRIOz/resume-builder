@@ -10,6 +10,12 @@ import { usePuterStore } from "~/lib/puter";
 import LightRays from "~/components/LightRays";
 import { Button } from "../components/ui/button";
 import { useTranslation } from "react-i18next";
+//gsap
+import { gsap } from "gsap";
+import { SplitText } from "gsap/SplitText";
+import { useGSAP } from "@gsap/react";
+
+gsap.registerPlugin(SplitText);
 
 export function meta({}: Route.MetaArgs) {
   return [
@@ -24,9 +30,9 @@ export default function Home() {
   const [resumes, setResumes] = useState<Resume[]>([]);
   const [loadingResumes, setLoadingResumes] = useState(false);
 
-  useEffect(() => {
-    if (!auth.isAuthenticated) navigate("/auth?next=/");
-  }, [auth.isAuthenticated]);
+  // useEffect(() => {
+  //   if (!auth.isAuthenticated) navigate("/auth?next=/");
+  // }, [auth.isAuthenticated]);
   const { t } = useTranslation();
 
   useEffect(() => {
@@ -46,10 +52,23 @@ export default function Home() {
     loadResumes();
   }, []);
 
+  useGSAP(() => {
+    const titleT = gsap.timeline({ delay: 0.5 });
+    const titleSplit = SplitText.create(".title", { type: "words, lines" });
+
+    titleT.from(titleSplit.words, {
+      duration: 1,
+      y: 100,
+      stagger: 0.1,
+      ease: "power1.inOut",
+      zIndex: 1,
+    });
+  });
+
   return (
     <main>
       <Navbar />
-      <section className="main-section relative">
+      <section className="main-section">
         <div style={{ width: "100%", height: "100%", position: "relative" }}>
           <LightRays
             raysOrigin="top-center"
@@ -64,13 +83,15 @@ export default function Home() {
             className="custom-rays"
           />
         </div>
-        <div className="absolute -translate-x-1/2 -translate-y-1/2 left-1/2 top-1/2 ">
-          <div className="page-heading">
-            <h1>{t("Track-Your-Applications-&-Resume-Ratings")}</h1>
+        <div className="absolute -translate-x-1/2 -translate-y-1/2 left-1/2 top-1/2">
+          <div className="page-heading ">
+            <h1 className="title">
+              {t("Track-Your-Applications-&-Resume-Ratings")}
+            </h1>
             {!loadingResumes && resumes?.length === 0 ? (
               <h2>
                 {t(
-                  "No-resumes-found.-Upload-your-first-resume-to-get-feedback."
+                  "No-resumes-found-Upload-your-first-resume-to-get-feedback-."
                 )}
               </h2>
             ) : (
@@ -94,7 +115,7 @@ export default function Home() {
           )}
 
           {!loadingResumes && resumes?.length === 0 && (
-            <div className="flex flex-col items-center justify-center mt-10 gap-4">
+            <div className="text-center mt-10">
               <Link to="/upload">
                 <Button variant={"default"}>{t("Upload-Resume")}</Button>
               </Link>

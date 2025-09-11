@@ -73,10 +73,10 @@ form {
     @apply primary-gradient rounded-full py-4 px-8 cursor-pointer w-[600px] max-md:w-full text-3xl font-semibold text-white;
   }
   .main-section {
-    @apply relative w-full h-full flex flex-col items-center justify-center text-white max-sm:mx-2 pb-5;
+    @apply w-full h-full flex flex-col items-center justify-center text-white max-sm:mx-2 pb-5;
   }
   .page-heading {
-    @apply flex flex-col items-center  gap-8 max-w-4xl text-center max-sm:gap-4;
+    @apply flex flex-col items-center gap-8 max-w-4xl text-center max-sm:gap-4;
   }
   .resumes-section {
     @apply flex flex-wrap max-md:flex-col max-md:gap-4 gap-6 items-start max-md:items-center w-full max-w-[1850px] justify-evenly;

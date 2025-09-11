@@ -6,7 +6,6 @@ import {
   SelectValue,
 } from "./ui/select";
 import { Globe } from "lucide-react";
-import { Button } from "./ui/button";
 import { useTranslation } from "react-i18next";
 export function LanguageDropdown() {
   const { i18n } = useTranslation();
