@@ -6,7 +6,11 @@ import { useNavigate } from "react-router";
 import { generateUUID } from "~/lib/utils";
 import { prepareInstructions } from "constance";
 import { convertPdfToImage } from "~/lib/pdf2img";
-
+import { useTranslation } from "react-i18next";
+import { Button } from "~/components/ui/button";
+//gsap
+import { gsap } from "gsap";
+import { useGSAP } from "@gsap/react";
 const Upload = () => {
   const { auth, isLoading, fs, ai, kv } = usePuterStore();
   const navigate = useNavigate();
@@ -14,6 +18,7 @@ const Upload = () => {
   const [statusText, setStatusText] = useState("");
   const [file, setFile] = useState<File | null>(null);
 
+  const { t } = useTranslation();
   const handleFileSelect = (file: File | null) => {
     setFile(file);
   };
@@ -57,7 +62,7 @@ const Upload = () => {
     };
     await kv.set(`resume:${uuid}`, JSON.stringify(data));
 
-    setStatusText("Analyzing...");
+    setStatusText(t("Analyzing..."));
 
     const feedback = await ai.feedback(
       uploadedFile.path,
@@ -92,20 +97,34 @@ const Upload = () => {
     handleAnalyze({ companyName, jobTitle, jobDescription, file });
   };
 
+  useGSAP(() => {
+    const tl = gsap.timeline({
+      delay: 1,
+    });
+
+    tl.from("form div", {
+      y: 100,
+      ease: "power1.inOut",
+      stagger: 0.2,
+      opacity: 0,
+      duration: 0.5,
+    });
+  });
+
   return (
     <main className="">
       <Navbar />
 
       <section className="main-section">
         <div className="page-heading py-16">
-          <h1>Smart feedback for your dream job</h1>
+          <h1>{t("Smartfeedbackforyourdreamjob")}</h1>
           {isProcessing ? (
             <>
               <h2>{statusText}</h2>
               <img src="/images/resume-scan.gif" className="w-full" />
             </>
           ) : (
-            <h2>Drop your resume for an ATS score and improvement tips</h2>
+            <h2>{t("DropyourresumeforanATSscoreandimprovementtips")}</h2>
           )}
           {!isProcessing && (
             <form
@@ -114,41 +133,45 @@ const Upload = () => {
               className="flex flex-col gap-4 mt-8"
             >
               <div className="form-div">
-                <label htmlFor="company-name">Company Name</label>
+                <label htmlFor="company-name">{t("CompanyName")}</label>
                 <input
                   type="text"
                   name="company-name"
-                  placeholder="Company Name"
+                  placeholder={t("CompanyName")}
                   id="company-name"
                 />
               </div>
               <div className="form-div">
-                <label htmlFor="job-title">Job Title</label>
+                <label htmlFor="job-title">{t("JobTitle")}</label>
                 <input
                   type="text"
                   name="job-title"
-                  placeholder="Job Title"
+                  placeholder={t("JobTitle")}
                   id="job-title"
                 />
               </div>
               <div className="form-div">
-                <label htmlFor="job-description">Job Description</label>
+                <label htmlFor="job-description">{t("JobDescription")}</label>
                 <textarea
                   rows={5}
                   name="job-description"
-                  placeholder="Job Description"
+                  placeholder={t("JobDescription")}
                   id="job-description"
                 />
               </div>
 
               <div className="form-div">
-                <label htmlFor="uploader">Upload Resume</label>
+                <label htmlFor="uploader">{t("Upload-Resume")}</label>
                 <FileUploader onFileSelect={handleFileSelect} />
               </div>
 
-              <button className="primary-button" type="submit">
-                Analyze Resume
-              </button>
+              <Button
+                className="w-full cursor-pointer"
+                variant={"default"}
+                type="submit"
+              >
+                {t("AnalyzeResume")}
+              </Button>
             </form>
           )}
         </div>

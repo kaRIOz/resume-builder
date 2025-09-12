@@ -1,5 +1,6 @@
 import { useState, useCallback } from "react";
 import { useDropzone } from "react-dropzone";
+import { useTranslation } from "react-i18next";
 import { formatSize } from "~/lib/utils";
 
 interface FileUploaderProps {
@@ -7,6 +8,7 @@ interface FileUploaderProps {
 }
 
 const FileUploader = ({ onFileSelect }: FileUploaderProps) => {
+  const { t } = useTranslation();
   const onDrop = useCallback(
     (acceptedFiles: File[]) => {
       const file = acceptedFiles[0] || null;
@@ -42,10 +44,10 @@ const FileUploader = ({ onFileSelect }: FileUploaderProps) => {
               <img src="/images/pdf.png" alt="pdf" className="size-10" />
               <div className="flex items-center space-x-3">
                 <div>
-                  <p className="text-sm font-medium text-gray-700 truncate max-w-xs">
+                  <p className="text-sm font-medium text-[#b6b6b6] truncate max-w-xs">
                     {file.name}
                   </p>
-                  <p className="text-sm text-gray-500">
+                  <p className="text-sm text-[#b6b6b6]">
                     {formatSize(file.size)}
                   </p>
                 </div>
@@ -65,11 +67,11 @@ const FileUploader = ({ onFileSelect }: FileUploaderProps) => {
                 <img src="/icons/info.svg" alt="upload" className="size-20" />
               </div>
               <p className="text-lg text-gray-500">
-                <span className="font-semibold">Click to upload</span> or drag
-                and drop
+                <span className="font-semibold">{t("Clicktoupload")}</span>{" "}
+                {t("ordraganddrop")}
               </p>
               <p className="text-lg text-gray-500">
-                PDF (max {formatSize(maxFileSize)})
+                PDF ({t("max")} {formatSize(maxFileSize)})
               </p>
             </div>
           )}
