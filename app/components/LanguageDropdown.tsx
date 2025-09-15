@@ -20,7 +20,7 @@ export function LanguageDropdown() {
         <Globe className="h-4 w-4" />
         <SelectValue placeholder="lng" />
       </SelectTrigger>
-      <SelectContent>
+      <SelectContent className="z-[100]">
         <SelectItem value="fa">فارسی</SelectItem>
         <SelectItem value="en">English</SelectItem>
       </SelectContent>

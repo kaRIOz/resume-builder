@@ -1,15 +1,16 @@
 import { useEffect, useState } from "react";
-
 import type { Route } from "./+types/home";
-import { Link, useNavigate } from "react-router";
-// components
-import Navbar from "./../components/Navbar";
-import ResumeCard from "~/components/ResumeCard";
-//zustand
+
+import Hero from "~/components/Hero";
 import { usePuterStore } from "~/lib/puter";
-import LightRays from "~/components/LightRays";
-import { Button } from "../components/ui/button";
-import { useTranslation } from "react-i18next";
+import UploadCards from "~/components/UploadCards";
+import { useNavigate } from "react-router";
+// components
+import Navbar from "~/components/Navbar";
+// Gsap
+import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
+import { ScrollSmoother, ScrollTrigger } from "gsap/all";
 
 export function meta({}: Route.MetaArgs) {
   return [
@@ -18,16 +19,29 @@ export function meta({}: Route.MetaArgs) {
   ];
 }
 
-export default function Home() {
-  const { auth, kv } = usePuterStore();
-  const navigate = useNavigate();
+gsap.registerPlugin(ScrollSmoother, ScrollTrigger);
+
+const home = () => {
+  useGSAP(() => {
+    ScrollSmoother.create({
+      wrapper: ".main",
+      content: ".content",
+      smooth: 4,
+      speed: 2,
+      effects: true, // Enables data-speed and data-lag attributes
+      smoothTouch: 0.1,
+      normalizeScroll: true,
+    });
+  }, []);
+
   const [resumes, setResumes] = useState<Resume[]>([]);
   const [loadingResumes, setLoadingResumes] = useState(false);
+  const { auth, kv } = usePuterStore();
 
-  useEffect(() => {
-    if (!auth.isAuthenticated) navigate("/auth?next=/");
-  }, [auth.isAuthenticated]);
-  const { t } = useTranslation();
+  const navigate = useNavigate();
+  // useEffect(() => {
+  //   if (!auth.isAuthenticated) navigate("/auth?next=/");
+  // }, [auth.isAuthenticated]);
 
   useEffect(() => {
     const loadResumes = async () => {
@@ -47,65 +61,17 @@ export default function Home() {
   }, []);
 
   return (
-    <main>
+    <>
       <Navbar />
-      <section className="main-section relative">
-        <div style={{ width: "100%", height: "100%", position: "relative" }}>
-          <LightRays
-            raysOrigin="top-center"
-            raysColor="#00ffff"
-            raysSpeed={1}
-            lightSpread={0.8}
-            rayLength={1.2}
-            followMouse={true}
-            mouseInfluence={0.1}
-            noiseAmount={0.1}
-            distortion={0.05}
-            className="custom-rays"
-          />
-        </div>
-        <div className="absolute -translate-x-1/2 top-1/4 left-1/2 -translate-y-1/2">
-          <div className="page-heading z-50">
-            <h1 className="title">
-              {t("Track-Your-Applications-&-Resume-Ratings")}
-            </h1>
-            {!loadingResumes && resumes?.length === 0 ? (
-              <h2>
-                {t(
-                  "No-resumes-found-Upload-your-first-resume-to-get-feedback-."
-                )}
-              </h2>
-            ) : (
-              <h2>
-                {t("Review-your-submissions-and-check-AI-powered-feedback.")}
-              </h2>
-            )}
-          </div>
-        </div>
-        <div>
-          {loadingResumes && (
-            <div className="flex flex-col items-center justify-center">
-              <img src="/images/resume-scan-2.gif" className="w-[200px]" />
-            </div>
-          )}
 
-          {!loadingResumes && resumes.length > 0 && (
-            <div className="resumes-section">
-              {resumes.map((resume) => (
-                <ResumeCard key={resume.id} resume={resume} />
-              ))}
-            </div>
-          )}
-
-          {!loadingResumes && resumes?.length === 0 && (
-            <div className="flex flex-col items-center justify-center mt-10 gap-4">
-              <Link to="/upload">
-                <Button variant={"default"}>{t("Upload-Resume")}</Button>
-              </Link>
-            </div>
-          )}
+      <main className="main">
+        <div className="content">
+          <Hero loadingResumes={loadingResumes} resumes={resumes} />
+          <UploadCards resumes={resumes} />
         </div>
-      </section>
-    </main>
+      </main>
+    </>
   );
-}
+};
+
+export default home;
