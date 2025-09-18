@@ -1,12 +1,19 @@
 // components
-import ResumeCard from "~/components/ResumeCard";
+import { useEffect, useState } from "react";
+import ScoreCircle from "./ScoreCircle";
+import { usePuterStore } from "~/lib/puter";
+import ChromaGrid from "./ChromaGrid";
 
 const UploadCards = ({ resumes }: { resumes: Resume[] }) => {
   return (
-    <section className="grid grid-cols-3 w-11/12 mx-auto">
-      {resumes.map((resume) => (
-        <ResumeCard key={resume.id} resume={resume} />
-      ))}
+    <section className="p-4 md:p-6">
+      <ChromaGrid
+        items={resumes}
+        radius={300}
+        damping={0.45}
+        fadeOut={0.6}
+        ease="power3.out"
+      />
     </section>
   );
 };

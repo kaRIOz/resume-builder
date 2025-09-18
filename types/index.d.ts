@@ -1,10 +1,15 @@
 interface Resume {
-  id: string;
+  id?: string;
   companyName?: string;
   jobTitle?: string;
-  imagePath: string;
-  resumePath: string;
-  feedback: Feedback;
+  imagePath?: string;
+  resumePath?: string;
+  feedback?: Feedback;
+  handle?: string;
+  borderColor?: string;
+  gradient?: string;
+  url?: string;
+  location?: string;
 }
 
 interface Feedback {

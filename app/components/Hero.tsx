@@ -36,7 +36,7 @@ export default function Hero({
           className="custom-rays"
         />
       </div>
-      <div className="h-screen relative z-10 flex flex-col justify-center items-center gap-y-2 max-w-4xl mx-auto px-4 text-center mt-[120px] md:mt-[50px]">
+      <div className="h-screen relative z-10 flex flex-col justify-center items-center gap-y-2 max-w-4xl mx-auto px-4 text-center ">
         <div className="page-heading z-50">
           <h1 className="title">Discover Strengths and Fix Weaknesses Fast</h1>
 

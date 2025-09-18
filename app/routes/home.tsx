@@ -11,6 +11,7 @@ import Navbar from "~/components/Navbar";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollSmoother, ScrollTrigger } from "gsap/all";
+import HowItWorks from "~/components/HowItWorks";
 
 export function meta({}: Route.MetaArgs) {
   return [
@@ -24,15 +25,10 @@ gsap.registerPlugin(ScrollSmoother, ScrollTrigger);
 const home = () => {
   useGSAP(() => {
     ScrollSmoother.create({
-      wrapper: ".main",
-      content: ".content",
-      smooth: 4,
-      speed: 2,
-      effects: true, // Enables data-speed and data-lag attributes
-      smoothTouch: 0.1,
-      normalizeScroll: true,
+      smooth: 3,
+      effects: true,
     });
-  }, []);
+  });
 
   const [resumes, setResumes] = useState<Resume[]>([]);
   const [loadingResumes, setLoadingResumes] = useState(false);
@@ -63,11 +59,17 @@ const home = () => {
   return (
     <>
       <Navbar />
-
-      <main className="main">
-        <div className="content">
-          <Hero loadingResumes={loadingResumes} resumes={resumes} />
-          <UploadCards resumes={resumes} />
+      <main>
+        <div id="smooth-wrapper">
+          <div id="smooth-content">
+            <Hero loadingResumes={loadingResumes} resumes={resumes} />
+            <div>
+              <HowItWorks />
+            </div>
+            <div className="h-dvh">55555555555</div>
+            <div className="h-[150dvh]">sdfsdfsdfsdf</div>
+            <UploadCards resumes={resumes} />
+          </div>
         </div>
       </main>
     </>

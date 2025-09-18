@@ -1,4 +1,3 @@
-@import url("https://fonts.googleapis.com/css2?family=Mona+Sans:ital,wght@0,200..900;1,200..900&display=swap");
 @import "tailwindcss";
 @import "tw-animate-css";
 
@@ -27,6 +26,9 @@ h1 {
 
 h2 {
   @apply max-sm:text-xl text-2xl text-dark-200;
+}
+h3 {
+  @apply text-4xl md:text-7xl text-[var(--popover-foreground)];
 }
 
 label {
@@ -69,14 +71,8 @@ form {
   .auth-button {
     @apply primary-gradient rounded-full py-4 px-8 cursor-pointer w-[600px] max-md:w-full text-3xl font-semibold text-white;
   }
-  .main-section {
-    @apply w-full h-full flex flex-col items-center justify-center text-white max-sm:mx-2 pb-5;
-  }
   .page-heading {
     @apply flex flex-col items-center gap-8 max-w-4xl text-center max-sm:gap-4;
-  }
-  .resumes-section {
-    @apply flex flex-wrap max-md:flex-col max-md:gap-4 gap-6 items-start max-md:items-center w-full max-w-[1850px] justify-evenly;
   }
 
   .resume-card {
@@ -222,7 +218,7 @@ form {
 }
 
 .dark {
-  --background: oklch(0.141 0.005 285.823);
+  --background: oklch(21.932% 0.00794 17.602);
   --foreground: oklch(0.985 0 0);
   --card: oklch(0.21 0.006 285.885);
   --card-foreground: oklch(0.985 0 0);
@@ -260,7 +256,7 @@ form {
     @apply border-border outline-ring/50;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground scroll-smooth;
   }
 }
 @keyframes shine {
@@ -274,4 +270,18 @@ form {
 
 .animate-shine {
   animation: shine 5s linear infinite;
+}
+
+@layer components {
+  .testimonials-section {
+    @apply relative h-[120dvh];
+
+    .pin-box {
+      @apply w-full flex items-center justify-center gap-3 absolute bottom-[40vh];
+
+      .vd-card {
+        @apply w-96 p-3 rounded-[2vw] overflow-hidden 2xl:relative absolute border-[.5vw];
+      }
+    }
+  }
 }
