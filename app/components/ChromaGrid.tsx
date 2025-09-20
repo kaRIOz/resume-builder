@@ -207,9 +207,9 @@ const ChromaGrid: React.FC<ChromaGridProps> = ({
               />
             </div>
             <footer className="relative z-10 p-3 text-white font-sans flex items-center justify-between gap-x-3">
-              <h3 className="m-0 text-[1.05rem] font-semibold truncate max-w-[60%]">
+              <h4 className="m-0 text-[1.05rem] font-semibold truncate max-w-[60%]">
                 to : {c.companyName}
-              </h3>
+              </h4>
               <p className="m-0 text-[0.85rem] opacity-85 ">
                 as : <span className="uppercase">{c.jobTitle}</span>
               </p>

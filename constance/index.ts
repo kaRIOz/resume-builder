@@ -1,186 +1,3 @@
-export const resumes: Resume[] = [
-  {
-    id: "1",
-    companyName: "Google",
-    jobTitle: "Frontend Developer",
-    imagePath: "/images/resume_01.png",
-    resumePath: "/resumes/resume-1.pdf",
-    feedback: {
-      overallScore: 85,
-      ATS: {
-        score: 90,
-        tips: [],
-      },
-      toneAndStyle: {
-        score: 90,
-        tips: [],
-      },
-      content: {
-        score: 90,
-        tips: [],
-      },
-      structure: {
-        score: 90,
-        tips: [],
-      },
-      skills: {
-        score: 90,
-        tips: [],
-      },
-    },
-  },
-  {
-    id: "2",
-    companyName: "Microsoft",
-    jobTitle: "Cloud Engineer",
-    imagePath: "/images/resume_02.png",
-    resumePath: "/resumes/resume-2.pdf",
-    feedback: {
-      overallScore: 55,
-      ATS: {
-        score: 90,
-        tips: [],
-      },
-      toneAndStyle: {
-        score: 90,
-        tips: [],
-      },
-      content: {
-        score: 90,
-        tips: [],
-      },
-      structure: {
-        score: 90,
-        tips: [],
-      },
-      skills: {
-        score: 90,
-        tips: [],
-      },
-    },
-  },
-  {
-    id: "3",
-    companyName: "Apple",
-    jobTitle: "iOS Developer",
-    imagePath: "/images/resume_03.png",
-    resumePath: "/resumes/resume-3.pdf",
-    feedback: {
-      overallScore: 75,
-      ATS: {
-        score: 90,
-        tips: [],
-      },
-      toneAndStyle: {
-        score: 90,
-        tips: [],
-      },
-      content: {
-        score: 90,
-        tips: [],
-      },
-      structure: {
-        score: 90,
-        tips: [],
-      },
-      skills: {
-        score: 90,
-        tips: [],
-      },
-    },
-  },
-  {
-    id: "4",
-    companyName: "Google",
-    jobTitle: "Frontend Developer",
-    imagePath: "/images/resume_01.png",
-    resumePath: "/resumes/resume-1.pdf",
-    feedback: {
-      overallScore: 85,
-      ATS: {
-        score: 90,
-        tips: [],
-      },
-      toneAndStyle: {
-        score: 90,
-        tips: [],
-      },
-      content: {
-        score: 90,
-        tips: [],
-      },
-      structure: {
-        score: 90,
-        tips: [],
-      },
-      skills: {
-        score: 90,
-        tips: [],
-      },
-    },
-  },
-  {
-    id: "5",
-    companyName: "Microsoft",
-    jobTitle: "Cloud Engineer",
-    imagePath: "/images/resume_02.png",
-    resumePath: "/resumes/resume-2.pdf",
-    feedback: {
-      overallScore: 55,
-      ATS: {
-        score: 90,
-        tips: [],
-      },
-      toneAndStyle: {
-        score: 90,
-        tips: [],
-      },
-      content: {
-        score: 90,
-        tips: [],
-      },
-      structure: {
-        score: 90,
-        tips: [],
-      },
-      skills: {
-        score: 90,
-        tips: [],
-      },
-    },
-  },
-  {
-    id: "6",
-    companyName: "Apple",
-    jobTitle: "iOS Developer",
-    imagePath: "/images/resume_03.png",
-    resumePath: "/resumes/resume-3.pdf",
-    feedback: {
-      overallScore: 75,
-      ATS: {
-        score: 90,
-        tips: [],
-      },
-      toneAndStyle: {
-        score: 90,
-        tips: [],
-      },
-      content: {
-        score: 90,
-        tips: [],
-      },
-      structure: {
-        score: 90,
-        tips: [],
-      },
-      skills: {
-        score: 90,
-        tips: [],
-      },
-    },
-  },
-];
-
 export const AIResponseFormat = `
       interface Feedback {
       overallScore: number; //max 100
@@ -245,3 +62,30 @@ export const prepareInstructions = ({
       ${AIResponseFormat}
       Return the analysis as an JSON object, without any other text and without the backticks.
       Do not include any other text or comments.`;
+
+export const cards = [
+  {
+    step: 1,
+    title: "Upload your resume",
+    description:
+      "Upload your resume in PDF format and let our system analyze it.",
+    textColor: "bg-blue-100 text-blue-600",
+    translation: "translate-y-[-15%]",
+  },
+  {
+    step: 2,
+    title: "Paste the job requirements",
+    description:
+      "Copy and paste the job description or requirements of the positionyou’re applying for.",
+    textColor: "bg-green-100 text-green-600",
+    translation: "translate-y-[-10%]",
+  },
+  {
+    step: 3,
+    title: "See your results",
+    description:
+      "Get your match score, key strengths, and improvement suggestions.",
+    textColor: "bg-purple-100 text-purple-600",
+    translation: "translate-y-[-5%]",
+  },
+];

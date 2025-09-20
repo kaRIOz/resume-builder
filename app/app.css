@@ -1,12 +1,15 @@
+@import url("https://fonts.googleapis.com/css2?family=Antonio:wght@100..700&display=swap");
 @import "tailwindcss";
 @import "tw-animate-css";
 
 @custom-variant dark (&:is(.dark *));
 
+@font-face {
+  font-family: "ProximaNova, sans-serif";
+  src: url("/fonts/ProximaNova-Regular.otf");
+}
+
 @theme {
-  --font-sans:
-    "Mona Sans", ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji",
-    "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   --color-dark-200: #475467;
   --color-light-blue-100: #c1d3f81a;
   --color-light-blue-200: #a7bff14d;
@@ -218,7 +221,7 @@ form {
 }
 
 .dark {
-  --background: oklch(21.932% 0.00794 17.602);
+  --background: oklch(16.029% 0.00168 16.738);
   --foreground: oklch(0.985 0 0);
   --card: oklch(0.21 0.006 285.885);
   --card-foreground: oklch(0.985 0 0);
@@ -277,7 +280,7 @@ form {
     @apply relative h-[120dvh];
 
     .pin-box {
-      @apply w-full flex items-center justify-center gap-3 absolute bottom-[40vh];
+      @apply w-full flex items-center justify-center gap-3 absolute bottom-[55vh];
 
       .vd-card {
         @apply w-96 p-3 rounded-[2vw] overflow-hidden 2xl:relative absolute border-[.5vw];

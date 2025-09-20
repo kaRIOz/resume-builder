@@ -66,8 +66,6 @@ const home = () => {
             <div>
               <HowItWorks />
             </div>
-            <div className="h-dvh">55555555555</div>
-            <div className="h-[150dvh]">sdfsdfsdfsdf</div>
             <UploadCards resumes={resumes} />
           </div>
         </div>
