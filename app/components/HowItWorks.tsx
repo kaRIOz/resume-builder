@@ -12,8 +12,8 @@ export default function HowItWorks() {
     const details = gsap.utils.toArray(
       ".desktopContentSection:not(:first-child)"
     );
-    const photos = gsap.utils.toArray(".desktopPhoto:not(:first-child)");
-    const allPhotos = gsap.utils.toArray(".desktopPhoto");
+    const photos = gsap.utils.toArray(".desktopPhoto:not(:first-child)") as any;
+    const allPhotos = gsap.utils.toArray(".desktopPhoto") as any;
 
     gsap.set(photos, { yPercent: 101 });
 
@@ -27,7 +27,7 @@ export default function HowItWorks() {
         pin: ".right",
       });
 
-      details.forEach((detail, index) => {
+      details.forEach((detail: any, index) => {
         let headline = detail.querySelector("h1");
         let animation = gsap
           .timeline()
