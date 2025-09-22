@@ -13,18 +13,10 @@
   --color-dark-200: #475467;
   --color-light-blue-100: #c1d3f81a;
   --color-light-blue-200: #a7bff14d;
-
-  --color-badge-green: #d5faf1;
-  --color-badge-red: #f9e3e2;
-  --color-badge-yellow: #fceed8;
-
-  --color-badge-green-text: #254d4a;
-  --color-badge-red-text: #752522;
-  --color-badge-yellow-text: #73321b;
 }
 
 h1 {
-  @apply max-sm:text-[3rem] text-6xl  text-gradient leading-tight xl:tracking-[-2px] font-semibold;
+  @apply text-[clamp(3rem,4.2vw,7rem)] text-gradient leading-tight xl:tracking-[-2px] font-semibold;
 }
 
 h2 {
@@ -38,11 +30,11 @@ label {
   @apply text-dark-200;
 }
 input {
-  @apply w-10/12 p-4 inset-shadow rounded-lg  focus:outline-none bg-[var(--input)];
+  @apply w-10/12 p-4 inset-shadow rounded-lg  focus:outline-none focus:bg-background bg-[var(--input)];
 }
 
 textarea {
-  @apply w-10/12 p-4 inset-shadow rounded-lg  focus:outline-none bg-[var(--input)];
+  @apply w-10/12 resize-none p-4 inset-shadow rounded-lg  focus:outline-none focus:bg-background bg-[var(--input)];
 }
 
 form {
@@ -65,7 +57,7 @@ form {
   .resume-summary {
     @apply flex flex-row items-center justify-center p-4 gap-4;
     .category {
-      @apply flex flex-row gap-2 items-center bg-gray-50 rounded-2xl p-4 w-full justify-between;
+      @apply flex flex-row gap-2 items-center bg-background rounded-2xl p-4 w-full justify-between;
     }
   }
   .back-button {
@@ -79,7 +71,7 @@ form {
   }
 
   .resume-card {
-    @apply flex flex-col gap-4 h-[500px] w-[310px] lg:w-[390px] xl:w-[450px] bg-[var(--input)] rounded-2xl p-4;
+    @apply flex flex-col gap-4 h-[500px]  bg-[var(--input)] rounded-2xl p-4;
   }
 
   .resume-card-header {
@@ -99,7 +91,7 @@ form {
   }
 
   .form-div {
-    @apply flex flex-col gap-2 w-full items-start;
+    @apply flex flex-col gap-2 w-full items-center;
   }
 
   .uplader-drag-area {

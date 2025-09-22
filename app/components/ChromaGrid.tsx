@@ -30,69 +30,12 @@ const ChromaGrid: React.FC<ChromaGridProps> = ({
   const { fs } = usePuterStore();
   const [resumeUrls, setResumeUrls] = useState<Record<string, string>>({});
 
-  const demo: Resume[] = [
-    {
-      imagePath: "https://i.pravatar.cc/300?img=8",
-      companyName: "Alex Rivera",
-      jobTitle: "Full Stack Developer",
-      handle: "@alexrivera",
-      borderColor: "#4F46E5",
-      gradient: "linear-gradient(145deg,#4F46E5,#000)",
-      url: "https://github.com/",
-    },
-    {
-      imagePath: "https://i.pravatar.cc/300?img=11",
-      companyName: "Jordan Chen",
-      jobTitle: "DevOps Engineer",
-      handle: "@jordanchen",
-      borderColor: "#10B981",
-      gradient: "linear-gradient(210deg,#10B981,#000)",
-      url: "https://linkedin.com/in/",
-    },
-    {
-      imagePath: "https://i.pravatar.cc/300?img=3",
-      companyName: "Morgan Blake",
-      jobTitle: "UI/UX Designer",
-      handle: "@morganblake",
-      borderColor: "#F59E0B",
-      gradient: "linear-gradient(165deg,#F59E0B,#000)",
-      url: "https://dribbble.com/",
-    },
-    {
-      imagePath: "https://i.pravatar.cc/300?img=16",
-      companyName: "Casey Park",
-      jobTitle: "Data Scientist",
-      handle: "@caseypark",
-      borderColor: "#EF4444",
-      gradient: "linear-gradient(195deg,#EF4444,#000)",
-      url: "https://kaggle.com/",
-    },
-    {
-      imagePath: "https://i.pravatar.cc/300?img=25",
-      companyName: "Sam Kim",
-      jobTitle: "Mobile Developer",
-      handle: "@thesamkim",
-      borderColor: "#8B5CF6",
-      gradient: "linear-gradient(225deg,#8B5CF6,#000)",
-      url: "https://github.com/",
-    },
-    {
-      imagePath: "https://i.pravatar.cc/300?img=60",
-      companyName: "Tyler Rodriguez",
-      jobTitle: "Cloud Architect",
-      handle: "@tylerrod",
-      borderColor: "#06B6D4",
-      gradient: "linear-gradient(135deg,#06B6D4,#000)",
-      url: "https://aws.amazon.com/",
-    },
-  ];
-
-  const data = items?.length ? items : demo;
+  const data = items;
 
   useEffect(() => {
     const loadImages = async () => {
       const urls: Record<string, string> = {};
-      for (const r of data) {
+      for (const r of data!) {
         if (!r.imagePath) continue;
         try {
           const blob = await fs.read(r.imagePath); // فقط یک فایل
@@ -164,7 +107,7 @@ const ChromaGrid: React.FC<ChromaGridProps> = ({
       ref={rootRef}
       onPointerMove={handleMove}
       onPointerLeave={handleLeave}
-      className={`w-10/12 mx-auto relative h-full grid gird-cols-3 gap-3 ${className}`}
+      className={`w-10/12 mx-auto relative h-full grid grid-cols-1 md:grid-cols-3 gap-4 ${className}`}
       style={
         {
           "--r": `${radius}px`,
@@ -173,7 +116,7 @@ const ChromaGrid: React.FC<ChromaGridProps> = ({
         } as React.CSSProperties
       }
     >
-      {data.map((c, i) => (
+      {data!.map((c, i) => (
         <Link
           to={`/resume/${c.id}`}
           className="resume-card animate-in fade-in duration-1000"
@@ -220,8 +163,8 @@ const ChromaGrid: React.FC<ChromaGridProps> = ({
       <div
         className="absolute inset-0 pointer-events-none z-30"
         style={{
-          backdropFilter: "grayscale(1) brightness(0.78)",
-          WebkitBackdropFilter: "grayscale(1) brightness(0.78)",
+          backdropFilter: "grayscale() ",
+          WebkitBackdropFilter: "grayscale(1) ",
           background: "rgba(0, 0, 0, 0)",
           maskImage:
             "radial-gradient(circle var(--r) at var(--x) var(--y),transparent 0%,transparent 15%,rgba(0,0,0,0.10) 30%,rgba(0,0,0,0.22)45%,rgba(0,0,0,0.35)60%,rgba(0,0,0,0.50)75%,rgba(0,0,0,0.68)88%,white 100%)",

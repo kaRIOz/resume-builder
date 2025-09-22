@@ -1,4 +1,4 @@
-import { useState, useCallback } from "react";
+import { useCallback } from "react";
 import { useDropzone } from "react-dropzone";
 import { useTranslation } from "react-i18next";
 import { formatSize } from "~/lib/utils";
@@ -18,7 +18,7 @@ const FileUploader = ({ onFileSelect }: FileUploaderProps) => {
     [onFileSelect]
   );
 
-  const maxFileSize = 20 * 1024 * 1024; // 20MB in bytes
+  const maxFileSize = 20 * 1024 * 1024;
 
   const { getRootProps, getInputProps, isDragActive, acceptedFiles } =
     useDropzone({

@@ -1,6 +1,7 @@
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
+// constants
 import { cards } from "../../constance/index";
 // icons
 import { CloudUpload } from "lucide-react";
@@ -48,7 +49,6 @@ export default function HowItWorks() {
   return (
     <>
       <div className="gallery flex">
-        {/* Left (Desktop Content) */}
         <div className="left w-1/2 hidden sm:block">
           <div className="desktopContent w-4/5 mx-auto">
             {cards.map((c, i) => (
@@ -68,9 +68,7 @@ export default function HowItWorks() {
           </div>
         </div>
 
-        {/* Right (Photos + Mobile Content) */}
         <div className="right w-full sm:w-1/2 sm:h-screen flex flex-col justify-center items-center">
-          {/* Mobile Content */}
           <div className="mobileContent block sm:hidden w-[80vw]">
             <div className="mobilePhoto w-[80vw] h-[45vw] mt-20 rounded-[6vw] flex justify-center">
               <CloudUpload size={200} className="text-[#00d5ff]" />
@@ -98,8 +96,7 @@ export default function HowItWorks() {
             </p>
           </div>
 
-          {/* Desktop Photos */}
-          <div className="desktopPhotos hidden sm:block w-[40vw] h-[40vw] rounded-2xl relative overflow-hidden shadow-lg">
+          <div className=" hidden sm:block w-[40vw] h-[40vw] rounded-2xl relative overflow-hidden ">
             <div className="desktopPhoto flex items-center justify-center absolute w-full h-full">
               <CloudUpload size={256} className="text-[#00d5ff]" />
             </div>

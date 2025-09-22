@@ -6,7 +6,7 @@ import { usePuterStore } from "~/lib/puter";
 import Summary from "~/components/Summary";
 import ATS from "~/components/ATS";
 import Details from "~/components/Details";
-
+import { ArrowLeft } from "lucide-react";
 export const meta = () => [
   { title: "Resumind | Review " },
   { name: "description", content: "Detailed overview of your resume" },
@@ -56,8 +56,8 @@ const Resume = () => {
     <main className="!pt-0">
       <nav className="resume-nav">
         <Link to="/" className="back-button">
-          <img src="/icons/back.svg" alt="logo" className="w-2.5 h-2.5" />
-          <span className="text-gray-800 text-sm font-semibold">
+          <ArrowLeft size={20} />
+          <span className="text-gray-100 text-sm font-semibold">
             Back to Homepage
           </span>
         </Link>
@@ -77,7 +77,7 @@ const Resume = () => {
           )}
         </section>
         <section className="feedback-section">
-          <h2 className="text-4xl !text-black font-bold">Resume Review</h2>
+          <h2 className="text-4xl !text-gray-100 font-bold">Resume Review</h2>
           {feedback ? (
             <div className="flex flex-col gap-8 animate-in fade-in duration-1000">
               <Summary feedback={feedback} />

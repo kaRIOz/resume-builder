@@ -15,7 +15,7 @@ import HowItWorks from "~/components/HowItWorks";
 
 export function meta({}: Route.MetaArgs) {
   return [
-    { title: "Resume Builder" },
+    { title: "CVicion-AI" },
     { name: "description", content: "Welcome to React Router!" },
   ];
 }

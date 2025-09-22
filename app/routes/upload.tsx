@@ -112,16 +112,16 @@ const Upload = () => {
   });
 
   return (
-    <main className="">
+    <>
       <Navbar />
 
-      <section className="main-section">
+      <section className="flex flex-col items-center main-section">
         <div className="page-heading py-16">
           <h1>{t("Smartfeedbackforyourdreamjob")}</h1>
           {isProcessing ? (
             <>
               <h2>{statusText}</h2>
-              <img src="/images/resume-scan.gif" className="w-full" />
+              <img src="/images/resume-scan.gif" className="w-[50%]" />
             </>
           ) : (
             <h2>{t("DropyourresumeforanATSscoreandimprovementtips")}</h2>
@@ -130,10 +130,9 @@ const Upload = () => {
             <form
               id="upload-form"
               onSubmit={handleSubmit}
-              className="flex flex-col gap-4 mt-8"
+              className="flex flex-col justify-center gap-4 mt-4"
             >
               <div className="form-div">
-                <label htmlFor="company-name">{t("CompanyName")}</label>
                 <input
                   type="text"
                   name="company-name"
@@ -142,7 +141,6 @@ const Upload = () => {
                 />
               </div>
               <div className="form-div">
-                <label htmlFor="job-title">{t("JobTitle")}</label>
                 <input
                   type="text"
                   name="job-title"
@@ -151,17 +149,14 @@ const Upload = () => {
                 />
               </div>
               <div className="form-div">
-                <label htmlFor="job-description">{t("JobDescription")}</label>
                 <textarea
                   rows={5}
                   name="job-description"
                   placeholder={t("JobDescription")}
-                  id="job-description"
                 />
               </div>
 
               <div className="form-div">
-                <label htmlFor="uploader">{t("Upload-Resume")}</label>
                 <FileUploader onFileSelect={handleFileSelect} />
               </div>
 
@@ -176,7 +171,7 @@ const Upload = () => {
           )}
         </div>
       </section>
-    </main>
+    </>
   );
 };
 export default Upload;
